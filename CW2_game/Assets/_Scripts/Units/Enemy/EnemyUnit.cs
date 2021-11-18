@@ -11,7 +11,12 @@ namespace VS.CW2RTS.Units.Enemy
     {
         private NavMeshAgent navAgent;
 
+        public BasicUnit unitType;
+
+        [HideInInspector]
         public UnitStatTypes.Base baseStats;
+
+        public UnitStatDisplay statDisplay;
 
         private Collider[] rangeColliders;
 
@@ -27,6 +32,8 @@ namespace VS.CW2RTS.Units.Enemy
 
         private void Start()
         {
+            baseStats = unitType.baseStats;
+            statDisplay.SetStatDisplayBasicUnit(baseStats, false);
             navAgent = gameObject.GetComponent<NavMeshAgent>();
         }
 

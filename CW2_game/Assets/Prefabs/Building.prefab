@@ -493,10 +493,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb5935d590bc3f45b82c209f36d77a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingType: {fileID: 11400000, guid: d3946eef00433a6429ef47bc556246b7, type: 2}
   baseStats:
     health: 0
     armour: 0
     attack: 0
+  statDisplay: {fileID: 0}
 --- !u!114 &5272162038732904079
 MonoBehaviour:
   m_ObjectHideFlags: 0

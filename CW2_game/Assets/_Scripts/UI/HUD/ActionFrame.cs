@@ -127,9 +127,12 @@ namespace VS.CW2RTS.UI.HUD
         {
             GameObject spawnedObject = Instantiate(spawnOrder[0], new Vector3(spawnPoint.transform.parent.position.x, spawnPoint.transform.parent.position.y, spawnPoint.transform.parent.position.z), Quaternion.identity);
 
-            spawnedObject.GetComponent<Units.Player.PlayerUnit>().baseStats.health = 50;
+            Units.Player.PlayerUnit pU = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
+            pU.transform.SetParent(GameObject.Find("Player " + pU.unitType.type.ToString() + "s").transform);
 
             spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnPoint.transform.position);
+            spawnQueue.Remove(spawnQueue[0]);
+            spawnOrder.Remove(spawnOrder[0]);
         }
     }
 

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   unitName: 
-  playerPrefab: {fileID: 607910462129140539, guid: e226fd2ecb920714fb1c7b091b4f3073, type: 3}
-  enemyPrefab: {fileID: 6263807378893459618, guid: df0db0810eca7284dbacff91af0a5cea, type: 3}
+  playerPrefab: {fileID: 607910462129140539, guid: bf357566085b0e342a63082590e5d94a, type: 3}
+  enemyPrefab: {fileID: 6263807378893459618, guid: b3f3c5cb4ef47cf4c97b80a2488bfcf7, type: 3}
   icon: {fileID: 8056144020795063495, guid: d6a454325c057404db65203babc99e0e, type: 3}
   spawnTime: 5
   baseStats:

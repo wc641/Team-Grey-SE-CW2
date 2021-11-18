@@ -23,8 +23,6 @@ namespace VS.CW2RTS.UI.HUD
 
                 ActionFrame.instance.SpawnObject();  
 
-                ActionFrame.instance.spawnQueue.Remove(ActionFrame.instance.spawnQueue[0]);
-
                 if(ActionFrame.instance.spawnQueue.Count > 0)
                 {
                     StartCoroutine(SpawnQueueTimer());

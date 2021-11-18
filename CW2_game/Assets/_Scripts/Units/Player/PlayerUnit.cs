@@ -12,16 +12,35 @@ namespace VS.CW2RTS.Units.Player
     {
         private NavMeshAgent navAgent;
 
+        public BasicUnit unitType;
+
+        [HideInInspector]
         public UnitStatTypes.Base baseStats;
+
+        public UnitStatDisplay statDisplay;
 
         private void OnEnable()
         {
             navAgent = GetComponent<NavMeshAgent>();
         }
 
-        public void MoveUnit(Vector3 _destination)
+        private void Start()
         {
-            navAgent.SetDestination(_destination);
+            baseStats = unitType.baseStats;
+            statDisplay.SetStatDisplayBasicUnit(baseStats, true);
+        }
+
+        public void MoveUnit(Vector3 destination)
+        {
+            if (navAgent == null)
+            {
+                navAgent = GetComponent<NavMeshAgent>();
+                navAgent.SetDestination(destination);
+            }
+            else
+            {
+                navAgent.SetDestination(destination);
+            }
         }
     }
 }

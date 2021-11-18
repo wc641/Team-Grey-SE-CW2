@@ -14,28 +14,20 @@ namespace VS.CW2RTS.Units
 
         private bool isPlayerUnit = false;
 
-        private void Start()
+        public void SetStatDisplayBasicUnit(UnitStatTypes.Base stats, bool isPlayer)
         {
-            try
-            {
-                maxHealth = gameObject.GetComponentInParent<Player.PlayerUnit>().baseStats.health;
-                armour = gameObject.GetComponentInParent<Player.PlayerUnit>().baseStats.armour;
-                isPlayerUnit = true;
-            }
-            catch(Exception)
-            {
-                Debug.Log("No player Unit. Trying Enemy Unit...");
-                try
-                {
-                    maxHealth = gameObject.GetComponentInParent<Enemy.EnemyUnit>().baseStats.health;
-                    armour = gameObject.GetComponentInParent<Enemy.EnemyUnit>().baseStats.armour;
-                    isPlayerUnit = false;
-                }
-                catch (Exception)
-                {
-                    Debug.Log("No Unit Scripts found!");
-                }
-            }
+            maxHealth = stats.health;
+            armour = stats.armour;
+            isPlayerUnit = isPlayer;
+
+            currentHealth = maxHealth;
+        }
+
+        public void SetStatDisplayBasicBuilding(Buildings.BuildingStatTypes.Base stats, bool isPlayer)
+        {
+            maxHealth = stats.health;
+            armour = stats.armour;
+            isPlayerUnit = isPlayer;
 
             currentHealth = maxHealth;
         }
