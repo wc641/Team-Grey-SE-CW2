@@ -63,6 +63,7 @@ namespace VS.CW2RTS.Units.Enemy
                 hasAggro = true;
                 break;
             }
+            
         }
 
         private void Attack()
@@ -70,7 +71,7 @@ namespace VS.CW2RTS.Units.Enemy
             if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1)
             {   
                 aggroUnit.TakeDamage(baseStats.attack);
-                attackCooldown = baseStats.attackSpeed;
+                attackCooldown = baseStats.attackSpeedCooldown;
             }
         }
 
@@ -92,10 +93,6 @@ namespace VS.CW2RTS.Units.Enemy
                 }
             }
         }
-
-
-
-
     }
 
 }

@@ -17,12 +17,12 @@ MonoBehaviour:
   playerPrefab: {fileID: 607910462129140539, guid: bf357566085b0e342a63082590e5d94a, type: 3}
   enemyPrefab: {fileID: 6263807378893459618, guid: b3f3c5cb4ef47cf4c97b80a2488bfcf7, type: 3}
   icon: {fileID: 8056144020795063495, guid: d6a454325c057404db65203babc99e0e, type: 3}
-  spawnTime: 5
+  spawnTime: 2
   baseStats:
     cost: 25
     aggroRange: 10
     attackRange: 1
-    attackSpeed: 1
+    attackSpeedCooldown: 1
     attack: 2
-    health: 25
+    health: 100
     armour: 0

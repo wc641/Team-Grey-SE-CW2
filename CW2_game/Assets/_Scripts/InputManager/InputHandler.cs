@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using VS.CW2RTS.Units.Player;
+using VS.CW2RTS.Units.Enemy;
 
 
 namespace VS.CW2RTS.InputManager
@@ -56,7 +57,7 @@ namespace VS.CW2RTS.InputManager
                     }
                     else if (addedBuilding(hit.transform))
                     {
-                        // able to do stiff with building 
+                        // able to do stuff with building 
                     }
                 }
                 else
@@ -96,12 +97,26 @@ namespace VS.CW2RTS.InputManager
 
                         case 9:
                             //enemy units attack or set target
+                            foreach(Transform unit in selectedUnits)
+                            {
+                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+
+                                pU.playerCommandToBeExecuted = true;
+                                pU.hasAggro = true;
+                                pU.aggroTarget = hit.transform;
+                                pU.aggroUnit = pU.aggroTarget.gameObject.GetComponentInChildren<Units.UnitStatDisplay>();
+                                pU.MoveToAggroTarget();
+                                pU.playerCommandToBeExecuted = false;
+                            }
                             break;
+
                         default:
                             //if none of the above happens, do something
                             foreach(Transform unit in selectedUnits)
                             {
                                 PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                pU.playerCommandToBeExecuted = true;
+                                pU.hasAggro = false;
                                 pU.MoveUnit(hit.point);
                             }
                             break;

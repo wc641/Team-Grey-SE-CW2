@@ -239,11 +239,16 @@ MonoBehaviour:
     cost: 0
     aggroRange: 0
     attackRange: 0
-    attackSpeed: 0
+    attackSpeedCooldown: 0
     attack: 0
     health: 0
     armour: 0
   statDisplay: {fileID: 4975726724109674433}
+  playerCommandToBeExecuted: 0
+  aggroTarget: {fileID: 0}
+  aggroUnit: {fileID: 0}
+  hasAggro: 0
+  arrowPrefab: {fileID: 8730646027160744904, guid: e1fe76950fa838c4d8e9e909bd7ae12a, type: 3}
 --- !u!114 &6944209038081832893
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ namespace VS.CW2RTS.Units
         [System.Serializable]
         public class Base
         {
-            public float cost, aggroRange, attackRange, attackSpeed, attack, health, armour;
+            public float cost, aggroRange, attackRange, attackSpeedCooldown, attack, health, armour;
         }
     }
 

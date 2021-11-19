@@ -28,10 +28,19 @@ namespace VS.CW2RTS.Units
                 case "worker":
                     unit = worker;
                     break;
+                case "player worker":
+                    unit = worker;
+                    break;
                 case "warrior":
                     unit = warrior;
                     break;
+                case "player warrior":
+                    unit = warrior;
+                    break;
                 case "healer":
+                    unit = healer;
+                    break;
+                case "player healer":
                     unit = healer;
                     break;
                 default:
