@@ -41,6 +41,8 @@ namespace VS.CW2RTS.Units.Player
         private Vector3 lastPos;
 
 
+        private Animator animator;
+
         private void OnEnable()
         {
             navAgent = GetComponent<NavMeshAgent>();
@@ -48,6 +50,7 @@ namespace VS.CW2RTS.Units.Player
 
         private void Start()
         {
+            animator = GetComponent<Animator>();
             baseStats = unitType.baseStats;
             statDisplay.SetStatDisplayBasicUnit(baseStats, true);
         }
@@ -86,6 +89,8 @@ namespace VS.CW2RTS.Units.Player
             }
 
             lastPos = currentPos;
+            animator.SetBool("isMoving", unitIsMoving);
+            animator.SetBool("isAttacking", hasAggro);
         }
 
         public void MoveUnit(Vector3 destination)
