@@ -89,8 +89,12 @@ namespace VS.CW2RTS.Units.Player
             }
 
             lastPos = currentPos;
-            animator.SetBool("isMoving", unitIsMoving);
-            animator.SetBool("isAttacking", hasAggro);
+            if (animator)
+            {
+                animator.SetBool("isMoving", unitIsMoving);
+                animator.SetBool("isAttacking", hasAggro);
+            }
+
         }
 
         public void MoveUnit(Vector3 destination)
