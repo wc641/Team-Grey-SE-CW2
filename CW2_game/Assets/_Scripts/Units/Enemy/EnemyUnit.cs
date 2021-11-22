@@ -10,6 +10,7 @@ namespace VS.CW2RTS.Units.Enemy
     public class EnemyUnit : MonoBehaviour
     {
         private NavMeshAgent navAgent;
+        [SerializeField] private DrawProjectile line;
 
         public BasicUnit unitType;
 
@@ -47,8 +48,8 @@ namespace VS.CW2RTS.Units.Enemy
             }
             else
             {
-                Attack();
                 MoveToAggroTarget();
+                Attack();
             }
         }
 
@@ -58,8 +59,7 @@ namespace VS.CW2RTS.Units.Enemy
 
             for (int i = 0; i < rangeColliders.Length;)
             {
-                aggroTarget = rangeColliders[i].gameObject.transform;
-                aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
+                aggroTarget = rangeColliders[i].gameObject.transform;              
                 hasAggro = true;
                 break;
             }
@@ -69,7 +69,13 @@ namespace VS.CW2RTS.Units.Enemy
         private void Attack()
         {
             if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1)
-            {   
+            {
+                aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
+                if (unitType.type == BasicUnit.unitType.Archer)
+                {
+                    ProjectileRaycast.Shoot(transform.position, aggroTarget.position);
+                    line.SetupProjectile(transform.position, aggroTarget.position);
+                }
                 aggroUnit.TakeDamage(baseStats.attack);
                 attackCooldown = baseStats.attackSpeedCooldown;
             }
@@ -81,6 +87,7 @@ namespace VS.CW2RTS.Units.Enemy
             {
                 navAgent.SetDestination(transform.position);
                 hasAggro = false;
+                aggroUnit = null;
             }
             else
             {

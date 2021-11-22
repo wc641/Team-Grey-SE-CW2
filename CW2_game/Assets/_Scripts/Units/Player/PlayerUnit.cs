@@ -11,6 +11,8 @@ namespace VS.CW2RTS.Units.Player
     public class PlayerUnit : MonoBehaviour
     {
         private NavMeshAgent navAgent;
+        //public LineRenderer lineRenderer;
+        [SerializeField] private DrawProjectile line;
 
         public BasicUnit unitType;
 
@@ -38,7 +40,6 @@ namespace VS.CW2RTS.Units.Player
         private Vector3 currentPos;
         private Vector3 lastPos;
 
-        public Transform arrowPrefab;
 
         private void OnEnable()
         {
@@ -73,8 +74,8 @@ namespace VS.CW2RTS.Units.Player
 
             if (hasAggro && !playerCommandToBeExecuted)
             {
-                Attack();
                 MoveToAggroTarget();
+                Attack();             
             }
 
             lastPos = currentPos;
@@ -82,6 +83,7 @@ namespace VS.CW2RTS.Units.Player
 
         public void MoveUnit(Vector3 destination)
         {
+            navAgent.stoppingDistance = (0);
             if (navAgent == null)
             {
                 navAgent = GetComponent<NavMeshAgent>();
@@ -99,8 +101,7 @@ namespace VS.CW2RTS.Units.Player
 
             for (int i = 0; i < rangeColliders.Length;)
             {
-                aggroTarget = rangeColliders[i].gameObject.transform;
-                aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
+                aggroTarget = rangeColliders[i].gameObject.transform;  
                 hasAggro = true;
                 break;
             }
@@ -110,11 +111,12 @@ namespace VS.CW2RTS.Units.Player
         {
             if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1)
             {
-                if (unitType.type == BasicUnit.unitType.Healer)
+                aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
+                if (unitType.type == BasicUnit.unitType.Archer)
                 {
-                    //Instantiate(arrowPrefab, transform.position, transform.rotation);
-                }
-                //ProjectileRaycast.Shoot(transform.position, aggroTarget.position);
+                    ProjectileRaycast.Shoot(transform.position, aggroTarget.position);
+                    line.SetupProjectile(transform.position, aggroTarget.position);
+                }              
                 aggroUnit.TakeDamage(baseStats.attack);
                 attackCooldown = baseStats.attackSpeedCooldown;
             }
@@ -126,6 +128,7 @@ namespace VS.CW2RTS.Units.Player
             {
                 navAgent.SetDestination(transform.position);
                 hasAggro = false;
+                aggroUnit = null;
             }
             else
             {

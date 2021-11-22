@@ -95,7 +95,7 @@ namespace VS.CW2RTS.InputManager
                             //do something
                             break;
 
-                        case 9:
+                        case 9: // enemy layer
                             //enemy units attack or set target
                             foreach(Transform unit in selectedUnits)
                             {
@@ -117,6 +117,8 @@ namespace VS.CW2RTS.InputManager
                                 PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
                                 pU.playerCommandToBeExecuted = true;
                                 pU.hasAggro = false;
+                                pU.aggroTarget = null;
+                                pU.aggroUnit = null;
                                 pU.MoveUnit(hit.point);
                             }
                             break;

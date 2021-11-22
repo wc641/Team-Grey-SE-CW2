@@ -10,9 +10,9 @@ namespace VS.CW2RTS.Units
     {
         public enum unitType
         {
-            Worker,
+            Knight,
             Warrior,
-            Healer
+            Archer
         };
 
         [Space(15)]

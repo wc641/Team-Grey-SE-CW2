@@ -11,7 +11,7 @@ namespace VS.CW2RTS.Units
         public static UnitHandler instance;
 
         [SerializeField]
-        private BasicUnit worker, warrior, healer;
+        private BasicUnit knight, warrior, archer;
 
         public LayerMask pUnitLayer, eUnitLayer;
 
@@ -25,11 +25,11 @@ namespace VS.CW2RTS.Units
             BasicUnit unit;
             switch (type)
             {
-                case "worker":
-                    unit = worker;
+                case "knight":
+                    unit = knight;
                     break;
-                case "player worker":
-                    unit = worker;
+                case "player knight":
+                    unit = knight;
                     break;
                 case "warrior":
                     unit = warrior;
@@ -37,11 +37,11 @@ namespace VS.CW2RTS.Units
                 case "player warrior":
                     unit = warrior;
                     break;
-                case "healer":
-                    unit = healer;
+                case "archer":
+                    unit = archer;
                     break;
-                case "player healer":
-                    unit = healer;
+                case "player archer":
+                    unit = archer;
                     break;
                 default:
                     Debug.Log($"Unit Type: {type} could not be found or does not exist!");
