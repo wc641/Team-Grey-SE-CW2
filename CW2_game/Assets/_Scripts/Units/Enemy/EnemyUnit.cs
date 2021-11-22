@@ -44,7 +44,14 @@ namespace VS.CW2RTS.Units.Enemy
 
             if (!hasAggro)
             {
-                CheckForEnemyTargets();
+                if (unitType.type == BasicUnit.unitType.Healer)
+                {
+                    CheckForAllyTargets();
+                }
+                else
+                {
+                    CheckForEnemyTargets();
+                }              
             }
             else
             {
@@ -63,12 +70,23 @@ namespace VS.CW2RTS.Units.Enemy
                 hasAggro = true;
                 break;
             }
+        }
+
+        private void CheckForAllyTargets()
+        {
+            rangeColliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.eUnitLayer);
             
+            for (int i = 0; i < rangeColliders.Length;)
+            {
+                aggroTarget = rangeColliders[i].gameObject.transform;
+                hasAggro = true;
+                break;
+            }
         }
 
         private void Attack()
         {
-            if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1)
+            if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1 && aggroTarget != null)
             {
                 aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
                 if (unitType.type == BasicUnit.unitType.Archer)
@@ -76,7 +94,14 @@ namespace VS.CW2RTS.Units.Enemy
                     ProjectileRaycast.Shoot(transform.position, aggroTarget.position);
                     line.SetupProjectile(transform.position, aggroTarget.position);
                 }
-                aggroUnit.TakeDamage(baseStats.attack);
+                if (unitType.type == BasicUnit.unitType.Healer)
+                {
+                    aggroUnit.Heal(baseStats.attack);
+                }
+                else
+                {
+                    aggroUnit.TakeDamage(baseStats.attack);
+                }
                 attackCooldown = baseStats.attackSpeedCooldown;
             }
         }

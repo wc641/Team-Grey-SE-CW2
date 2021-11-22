@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using VS.CW2RTS.Units.Player;
 
 namespace VS.CW2RTS.Units
 {
@@ -41,6 +42,15 @@ namespace VS.CW2RTS.Units
         {
             float totalDamage = damage - armour;
             currentHealth -= totalDamage;
+        }
+
+        public void Heal(float healAmount)
+        {
+            currentHealth += healAmount;
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
         }
 
         private void HandleHealth()

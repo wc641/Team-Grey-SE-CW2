@@ -12,7 +12,8 @@ namespace VS.CW2RTS.Units
         {
             Knight,
             Warrior,
-            Archer
+            Archer,
+            Healer
         };
 
         [Space(15)]

@@ -37,7 +37,6 @@ namespace VS.CW2RTS.Player
                     string name = child.name.Substring(0, child.name.Length - 1).ToLower();
                     //var stats = Units.UnitHandler.instance.GetBasicUnitStats(unitName);
 
-
                     if (type == playerUnits)
                     {
                         // set unit stats in each unit 

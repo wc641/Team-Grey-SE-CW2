@@ -16,7 +16,7 @@ namespace VS.CW2RTS.Units.Player
 
         public BasicUnit unitType;
 
-        [HideInInspector]
+        //[HideInInspector]
         public UnitStatTypes.Base baseStats;
 
         public UnitStatDisplay statDisplay;
@@ -62,7 +62,14 @@ namespace VS.CW2RTS.Units.Player
                 unitIsMoving = false;
                 if (!hasAggro && !playerCommandToBeExecuted && !unitIsMoving)
                 {
-                    CheckForEnemyTargets();
+                    if (unitType.type == BasicUnit.unitType.Healer)
+                    {
+                        CheckForAllyTargets();
+                    }
+                    else
+                    {
+                        CheckForEnemyTargets();
+                    }
                 }
                 
             }
@@ -107,6 +114,18 @@ namespace VS.CW2RTS.Units.Player
             }
         }
 
+        private void CheckForAllyTargets()
+        {
+            rangeColliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.pUnitLayer);
+
+            for (int i = 0; i < rangeColliders.Length;)
+            {
+                aggroTarget = rangeColliders[i].gameObject.transform;
+                hasAggro = true;
+                break;
+            }
+        }
+
         private void Attack()
         {
             if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1)
@@ -117,7 +136,14 @@ namespace VS.CW2RTS.Units.Player
                     ProjectileRaycast.Shoot(transform.position, aggroTarget.position);
                     line.SetupProjectile(transform.position, aggroTarget.position);
                 }              
-                aggroUnit.TakeDamage(baseStats.attack);
+                if (unitType.type == BasicUnit.unitType.Healer)
+                {
+                    aggroUnit.Heal(baseStats.attack);
+                }
+                else
+                {
+                    aggroUnit.TakeDamage(baseStats.attack);
+                }
                 attackCooldown = baseStats.attackSpeedCooldown;
             }
         }

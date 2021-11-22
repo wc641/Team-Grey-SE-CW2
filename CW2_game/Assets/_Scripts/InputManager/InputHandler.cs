@@ -91,8 +91,18 @@ namespace VS.CW2RTS.InputManager
 
                     switch (layerHit.value)
                     {
-                        case 8: // units layer
-                            //do something
+                        case 8: // player units layer
+                            foreach (Transform unit in selectedUnits)
+                            {
+                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+
+                                pU.playerCommandToBeExecuted = true;
+                                pU.hasAggro = true;
+                                pU.aggroTarget = hit.transform;
+                                pU.aggroUnit = pU.aggroTarget.gameObject.GetComponentInChildren<Units.UnitStatDisplay>();
+                                pU.MoveToAggroTarget();
+                                pU.playerCommandToBeExecuted = false;
+                            }
                             break;
 
                         case 9: // enemy layer
