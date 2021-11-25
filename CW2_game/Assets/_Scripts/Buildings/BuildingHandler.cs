@@ -7,7 +7,9 @@ namespace VS.CW2RTS.Buildings
         public static BuildingHandler instance;
 
         [SerializeField]
-        private BasicBuilding barracks;
+        private BasicBuilding barracks, enemyBasicBuilding, enemyAttackTower, enemyCore;
+
+        public LayerMask eBuildingLayer;
 
 
         private void Awake()
@@ -22,6 +24,15 @@ namespace VS.CW2RTS.Buildings
             {
                 case "barrack":
                     building = barracks;
+                    break;
+                case "enemyBasicBuildin":
+                    building = enemyBasicBuilding;
+                    break;
+                case "enemyAttackTowe":
+                    building = enemyAttackTower;
+                    break;
+                case "enemyCore":
+                    building = enemyCore;
                     break;
                 default:
                     Debug.Log($"Unit Type: {type} could not be found or does not exist!");

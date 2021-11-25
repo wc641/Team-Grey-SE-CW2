@@ -13,6 +13,7 @@ namespace VS.CW2RTS.Player
         public Transform enemyUnits;
 
         public Transform playerBuildings;
+        public Transform enemyBuildings;
 
 
         private void Awake()
@@ -21,6 +22,7 @@ namespace VS.CW2RTS.Player
             SetBasicStats(playerUnits);
             SetBasicStats(enemyUnits);
             SetBasicStats(playerBuildings);
+            //SetBasicStats(enemy)
         }
 
         private void Update()

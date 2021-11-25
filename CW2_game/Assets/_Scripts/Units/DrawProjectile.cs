@@ -23,7 +23,7 @@ namespace VS.CW2RTS.Units
         IEnumerator timeProjectile()
         {
             lineRenderer.enabled = true;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
             lineRenderer.enabled = false;
         }
     }

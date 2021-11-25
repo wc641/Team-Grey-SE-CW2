@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using VS.CW2RTS.Units.Player;
-using VS.CW2RTS.Units.Enemy;
 
 
 namespace VS.CW2RTS.InputManager
@@ -120,6 +118,32 @@ namespace VS.CW2RTS.InputManager
                             }
                             break;
 
+                        case 11: // enemy buildings layer
+                            foreach (Transform unit in selectedUnits)
+                            {
+                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+
+                                pU.playerCommandToBeExecuted = true;
+                                pU.hasAggro = true;
+                                pU.aggroTarget = hit.transform;
+                                pU.aggroUnit = pU.aggroTarget.gameObject.GetComponentInChildren<Units.UnitStatDisplay>();
+                                pU.MoveToAggroTarget();
+                                pU.playerCommandToBeExecuted = false;
+                            }
+                            break;
+
+                        case 12: // obstacles layer
+                            foreach (Transform unit in selectedUnits)
+                            {
+                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
+                                pU.playerCommandToBeExecuted = true;
+                                pU.hasAggro = false;
+                                pU.aggroTarget = null;
+                                pU.aggroUnit = null;
+                                pU.MoveUnit(pU.transform.position, selectedUnits.Count);
+                            }
+                            break;
+
                         default:
                             //if none of the above happens, do something
                             foreach(Transform unit in selectedUnits)
@@ -129,7 +153,7 @@ namespace VS.CW2RTS.InputManager
                                 pU.hasAggro = false;
                                 pU.aggroTarget = null;
                                 pU.aggroUnit = null;
-                                pU.MoveUnit(hit.point);
+                                pU.MoveUnit(hit.point, selectedUnits.Count);
                             }
                             break;
                     }

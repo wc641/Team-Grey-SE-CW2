@@ -8,7 +8,10 @@ namespace VS.CW2RTS.Buildings
     {
         public enum buildingType
         {
-            Barracks
+            Barracks,
+            EnemyBasicBuilding,
+            EnemyAttackTower,
+            EnemyCore
         }
 
         [Space(15)]
