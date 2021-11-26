@@ -37,9 +37,6 @@ namespace VS.CW2RTS.Units.Player
         private Vector3 currentPos;
         private Vector3 lastPos;
 
-        private Vector3 _direction;
-        private Quaternion _lookRotation;
-
         private Animator animator;
         private bool unitIsAttacking = false;
 
@@ -119,9 +116,17 @@ namespace VS.CW2RTS.Units.Player
         {
             rangeColliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, UnitHandler.instance.eUnitLayer);
 
+            if (rangeColliders.Length > 0)
+            {               
+            }
+            else
+            {
+                rangeColliders = Physics.OverlapSphere(transform.position, baseStats.aggroRange, Buildings.BuildingHandler.instance.eBuildingLayer);
+            }
+
             for (int i = 0; i < rangeColliders.Length;)
             {
-                aggroTarget = rangeColliders[i].gameObject.transform;  
+                aggroTarget = rangeColliders[i].gameObject.transform;
                 hasAggro = true;
                 break;
             }
