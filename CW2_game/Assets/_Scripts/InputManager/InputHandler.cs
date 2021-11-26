@@ -28,7 +28,7 @@ namespace VS.CW2RTS.InputManager
 
         private void OnGUI()
         {
-            if (isDragging)
+            if (isDragging && Input.GetKey(KeyCode.LeftShift))
             {
                 Rect rect = MultiSelect.GetScreenRect(mousePos, Input.mousePosition);
                 MultiSelect.DrawScreenRect(rect, new Color(0f, 0f, 0f, 0.25f));
