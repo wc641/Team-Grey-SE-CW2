@@ -49,7 +49,6 @@ namespace VS.CW2RTS.UI.HUD
                     Button btn = Instantiate(actionButton, layoutGroup);
                     btn.name = building.name;
                     GameObject icon = Instantiate(building.icon, btn.transform);
-                    // add text etc?..
                     buttons.Add(btn);
                 }
             }
@@ -130,7 +129,7 @@ namespace VS.CW2RTS.UI.HUD
             Units.Player.PlayerUnit pU = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
             pU.transform.SetParent(GameObject.Find("Player " + pU.unitType.type.ToString() + "s").transform);
 
-            spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnPoint.transform.position);
+            spawnedObject.GetComponent<Units.Player.PlayerUnit>().MoveUnit(spawnPoint.transform.position, 1);
             spawnQueue.Remove(spawnQueue[0]);
             spawnOrder.Remove(spawnOrder[0]);
         }

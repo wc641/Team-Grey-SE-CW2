@@ -1017,7 +1017,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebdc5a1a50854dc4f806b4e3568aa116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitType: {fileID: 11400000, guid: 6e256a0725cc56842820d76048dd173b, type: 2}
+  line: {fileID: 0}
+  unitType: {fileID: 11400000, guid: 6aad1d101fca64d4aa8fb86aa0f4a12e, type: 2}
   baseStats:
     cost: 0
     aggroRange: 0
@@ -1031,7 +1032,6 @@ MonoBehaviour:
   aggroTarget: {fileID: 0}
   aggroUnit: {fileID: 0}
   hasAggro: 0
-  arrowPrefab: {fileID: 0}
 --- !u!195 &1225101102781870883
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1042,7 +1042,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

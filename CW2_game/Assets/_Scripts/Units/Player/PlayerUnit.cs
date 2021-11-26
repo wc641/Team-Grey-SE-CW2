@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -40,8 +37,11 @@ namespace VS.CW2RTS.Units.Player
         private Vector3 currentPos;
         private Vector3 lastPos;
 
+        private Vector3 _direction;
+        private Quaternion _lookRotation;
 
         private Animator animator;
+        private bool unitIsAttacking = false;
 
         private void OnEnable()
         {
@@ -87,19 +87,23 @@ namespace VS.CW2RTS.Units.Player
                 MoveToAggroTarget();
                 Attack();             
             }
+            else
+            {
+                unitIsAttacking = false;
+            }
 
             lastPos = currentPos;
+
             if (animator)
             {
                 animator.SetBool("isMoving", unitIsMoving);
-                animator.SetBool("isAttacking", hasAggro);
+                animator.SetBool("isAttacking", unitIsAttacking);
             }
-
         }
 
-        public void MoveUnit(Vector3 destination)
+        public void MoveUnit(Vector3 destination, int numberOfUnits)
         {
-            navAgent.stoppingDistance = (0);
+            navAgent.stoppingDistance = (numberOfUnits/2);
             if (navAgent == null)
             {
                 navAgent = GetComponent<NavMeshAgent>();
@@ -137,8 +141,11 @@ namespace VS.CW2RTS.Units.Player
 
         private void Attack()
         {
-            if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1)
+            if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1 && aggroTarget != null)
             {
+                transform.LookAt(aggroTarget);
+
+                unitIsAttacking = true;
                 aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
                 if (unitType.type == BasicUnit.unitType.Archer)
                 {

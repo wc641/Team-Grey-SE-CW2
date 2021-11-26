@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -66,9 +64,16 @@ namespace VS.CW2RTS.Units.Enemy
 
             for (int i = 0; i < rangeColliders.Length;)
             {
-                aggroTarget = rangeColliders[i].gameObject.transform;              
-                hasAggro = true;
-                break;
+                if (i+1 > rangeColliders.Length && unitType.type == BasicUnit.unitType.Archer)
+                {
+                    i++;
+                }
+                else
+                {
+                    aggroTarget = rangeColliders[i].gameObject.transform;
+                    hasAggro = true;
+                    break;
+                }
             }
         }
 
@@ -88,18 +93,20 @@ namespace VS.CW2RTS.Units.Enemy
         {
             if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1 && aggroTarget != null)
             {
+                transform.LookAt(aggroTarget);
+
                 aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
-                if (unitType.type == BasicUnit.unitType.Archer)
-                {
-                    ProjectileRaycast.Shoot(transform.position, aggroTarget.position);
-                    line.SetupProjectile(transform.position, aggroTarget.position);
-                }
                 if (unitType.type == BasicUnit.unitType.Healer)
                 {
                     aggroUnit.Heal(baseStats.attack);
                 }
                 else
                 {
+                    if (unitType.type == BasicUnit.unitType.Archer)
+                    {
+                        ProjectileRaycast.Shoot(transform.position, aggroTarget.position);
+                        line.SetupProjectile(transform.position, aggroTarget.position);
+                    }
                     aggroUnit.TakeDamage(baseStats.attack);
                 }
                 attackCooldown = baseStats.attackSpeedCooldown;
