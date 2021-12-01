@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using VS.CW2RTS.Units.Player;
+using VS.CW2RTS.Player;
 
 namespace VS.CW2RTS.Units
 {
     public class UnitStatDisplay : MonoBehaviour
     {
         public float maxHealth, armour, currentHealth;
+        public GameOverWinScreen GameOverWinScreen;
 
         [SerializeField] private Image healthBarAmount;
 
@@ -71,11 +73,16 @@ namespace VS.CW2RTS.Units
             if (isPlayerUnit)
             {
                 InputManager.InputHandler.instance.selectedUnits.Remove(gameObject.transform.parent);
+                PlayerManager.numberOfplayerUnits = PlayerManager.numberOfplayerUnits - 1;
                 Destroy(gameObject.transform.parent.gameObject);
             }
             else
             {
                 Destroy(gameObject.transform.parent.gameObject);
+                if (gameObject.transform.parent.gameObject.name.Equals("enemyCore"))
+                {
+                    GameOverWinScreen.Setup();
+                }
             }
         }
     }
