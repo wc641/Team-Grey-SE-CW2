@@ -20,7 +20,7 @@ MonoBehaviour:
   spawnTime: 2
   baseStats:
     cost: 10
-    aggroRange: 10
+    aggroRange: 5
     attackRange: 1
     attackSpeedCooldown: 0.5
     attack: 7

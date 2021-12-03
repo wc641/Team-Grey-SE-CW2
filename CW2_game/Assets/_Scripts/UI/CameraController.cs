@@ -108,7 +108,7 @@ public class CameraController : MonoBehaviour
             ClampZoom();
         }
 
-        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementSpeed);
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime + movementSpeed);
+        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime + movementTime);
     }
 }
