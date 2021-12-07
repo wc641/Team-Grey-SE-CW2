@@ -93,8 +93,6 @@ namespace VS.CW2RTS.Units.Enemy
         {
             if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1 && aggroTarget != null)
             {
-                transform.LookAt(aggroTarget);
-
                 aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
                 if (unitType.type == BasicUnit.unitType.Healer)
                 {
