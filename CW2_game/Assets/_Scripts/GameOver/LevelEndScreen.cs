@@ -7,7 +7,7 @@ namespace VS.CW2RTS.UI
     {
         public GameObject[] endScreens;
         private int currentScene;
-        private int nextScene;
+        private int nextScene = 1;
         private int screenToShow;
 
         public void SetScreenToShow(bool hasWon)
@@ -27,10 +27,13 @@ namespace VS.CW2RTS.UI
 
             if (hasWon)
             {
-                nextScene = currentScene + 1;
-                if (nextScene > PlayerPrefs.GetInt("levelReached"))
+                if (currentScene != 7)
                 {
-                    PlayerPrefs.SetInt("levelReached", nextScene);
+                    nextScene = currentScene + 1;
+                    if (nextScene > PlayerPrefs.GetInt("levelReached"))
+                    {
+                        PlayerPrefs.SetInt("levelReached", nextScene);
+                    }
                 }
             }
         }
