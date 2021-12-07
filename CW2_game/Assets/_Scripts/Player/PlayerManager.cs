@@ -1,5 +1,6 @@
 using UnityEngine;
 using VS.CW2RTS.InputManager;
+using VS.CW2RTS.UI;
 
 namespace VS.CW2RTS.Player
 {
@@ -7,7 +8,8 @@ namespace VS.CW2RTS.Player
     {
         public static PlayerManager instance;
         public static int numberOfplayerUnits;
-        public GameOverLostScreen GameOverLostScreen;
+        public static bool enemyCoreDestroyed = false;
+        public LevelEndScreen levelEndScreen;
 
         public Transform playerUnits;
         public Transform enemyUnits;
@@ -19,20 +21,26 @@ namespace VS.CW2RTS.Player
         private void Awake()
         {
             instance = this;
-            numberOfplayerUnits = playerUnits.childCount;
             SetBasicStats(playerUnits);
             SetBasicStats(enemyUnits);
             SetBasicStats(playerBuildings);
             //SetBasicStats(enemy)
         }
 
+        private void Start()
+        {
+            enemyCoreDestroyed = false;
+        }
+
         private void Update()
         {
             InputHandler.instance.HandleUnitMovement();
-            if (numberOfplayerUnits <= 0)
-            {
-                GameOverLostScreen.Setup();
-            }
+            
+            if (GameObject.FindGameObjectsWithTag("Player").Length <= 0)
+                levelEndScreen.SetScreenToShow(false);
+
+            if (enemyCoreDestroyed)
+                levelEndScreen.SetScreenToShow(true);
         }
 
         public void SetBasicStats(Transform type)
