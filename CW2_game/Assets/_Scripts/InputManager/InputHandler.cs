@@ -28,7 +28,7 @@ namespace VS.CW2RTS.InputManager
 
         private void OnGUI()
         {
-            if (isDragging && Input.GetKey(KeyCode.LeftShift))
+            if (isDragging && !Input.GetKey(KeyCode.LeftShift))
             {
                 Rect rect = MultiSelect.GetScreenRect(mousePos, Input.mousePosition);
                 MultiSelect.DrawScreenRect(rect, new Color(0f, 0f, 0f, 0.25f));
@@ -103,18 +103,23 @@ namespace VS.CW2RTS.InputManager
                             }
                             break;
 
-                        case 9: // enemy layer
-                            //enemy units attack or set target
+                        case 9: // enemy units layer
                             foreach(Transform unit in selectedUnits)
                             {
                                 PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
 
-                                pU.playerCommandToBeExecuted = true;
-                                pU.hasAggro = true;
-                                pU.aggroTarget = hit.transform;
-                                pU.aggroUnit = pU.aggroTarget.gameObject.GetComponentInChildren<Units.UnitStatDisplay>();
-                                pU.MoveToAggroTarget();
-                                pU.playerCommandToBeExecuted = false;
+                                if (pU.unitType.type == Units.BasicUnit.unitType.Healer) //healer does not aggro enemy units
+                                {
+                                }
+                                else
+                                {
+                                    pU.playerCommandToBeExecuted = true;
+                                    pU.hasAggro = true;
+                                    pU.aggroTarget = hit.transform;
+                                    pU.aggroUnit = pU.aggroTarget.gameObject.GetComponentInChildren<Units.UnitStatDisplay>();
+                                    pU.MoveToAggroTarget();
+                                    pU.playerCommandToBeExecuted = false;
+                                }
                             }
                             break;
 
@@ -123,25 +128,23 @@ namespace VS.CW2RTS.InputManager
                             {
                                 PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
 
-                                pU.playerCommandToBeExecuted = true;
-                                pU.hasAggro = true;
-                                pU.aggroTarget = hit.transform;
-                                pU.aggroUnit = pU.aggroTarget.gameObject.GetComponentInChildren<Units.UnitStatDisplay>();
-                                pU.MoveToAggroTarget();
-                                pU.playerCommandToBeExecuted = false;
+                                if (pU.unitType.type == Units.BasicUnit.unitType.Healer) //healer does not aggro enemy buildings
+                                {
+                                }
+                                else
+                                {
+                                    pU.playerCommandToBeExecuted = true;
+                                    pU.hasAggro = true;
+                                    pU.aggroTarget = hit.transform;
+                                    pU.aggroUnit = pU.aggroTarget.gameObject.GetComponentInChildren<Units.UnitStatDisplay>();
+                                    pU.MoveToAggroTarget();
+                                    pU.playerCommandToBeExecuted = false;
+                                }
                             }
                             break;
 
                         case 12: // obstacles layer
-                            foreach (Transform unit in selectedUnits)
-                            {
-                                PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
-                                pU.playerCommandToBeExecuted = true;
-                                pU.hasAggro = false;
-                                pU.aggroTarget = null;
-                                pU.aggroUnit = null;
-                                pU.MoveUnit(pU.transform.position, selectedUnits.Count);
-                            }
+                            // obstacles can't be targeted 
                             break;
 
                         default:

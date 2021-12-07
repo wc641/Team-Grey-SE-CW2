@@ -148,8 +148,6 @@ namespace VS.CW2RTS.Units.Player
         {
             if (attackCooldown <= 0 && distance <= baseStats.attackRange + 1 && aggroTarget != null)
             {
-                transform.LookAt(aggroTarget);
-
                 unitIsAttacking = true;
                 aggroUnit = aggroTarget.gameObject.GetComponentInChildren<UnitStatDisplay>();
                 if (unitType.type == BasicUnit.unitType.Archer)

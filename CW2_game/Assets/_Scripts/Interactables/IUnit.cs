@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace VS.CW2RTS.Interactables
 {
     public class IUnit : Interactable

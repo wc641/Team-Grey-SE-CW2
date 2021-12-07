@@ -1,20 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DontDestroyAudio : MonoBehaviour
+
+namespace VS.CW2RTS.UI
 {
-    static DontDestroyAudio instance = null;
-    void Awake()
+    public class DontDestroyAudio : MonoBehaviour
     {
-        if(instance != null)
+        static DontDestroyAudio instance = null;
+        void Awake()
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
         }
     }
 }
+

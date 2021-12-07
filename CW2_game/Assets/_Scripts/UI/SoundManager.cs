@@ -1,39 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundManager : MonoBehaviour
+
+namespace VS.CW2RTS.UI
 {
-    [SerializeField] Slider volumeSlider;
-    // Start is called before the first frame update
-    void Start()
+    public class SoundManager : MonoBehaviour
     {
-        if(!PlayerPrefs.HasKey("musicVolume"))
+        [SerializeField] Slider volumeSlider;
+        // Start is called before the first frame update
+        void Start()
         {
-            PlayerPrefs.SetFloat("musicVolume", 0.3f);
-            Load();
+            if (!PlayerPrefs.HasKey("musicVolume"))
+            {
+                PlayerPrefs.SetFloat("musicVolume", 0.3f);
+                Load();
+            }
+            else
+            {
+                Load();
+            }
         }
-        else
+
+        // Update is called once per frame
+        public void ChangeVolume()
         {
-            Load(); 
+            AudioListener.volume = volumeSlider.value;
+            Save();
+        }
+
+        private void Load()
+        {
+            volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        }
+
+        private void Save()
+        {
+            PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
         }
     }
 
-    // Update is called once per frame
-    public void ChangeVolume()
-    {
-        AudioListener.volume = volumeSlider.value;
-        Save();
-    }
-
-    private void Load()
-    {
-        volumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
-    }
-
-    private void Save()
-    {
-        PlayerPrefs.SetFloat("musicVolume", volumeSlider.value);
-    }
 }

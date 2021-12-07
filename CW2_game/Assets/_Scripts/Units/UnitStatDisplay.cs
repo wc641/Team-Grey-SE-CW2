@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using VS.CW2RTS.Units.Player;
 using VS.CW2RTS.Player;
 
 namespace VS.CW2RTS.Units
