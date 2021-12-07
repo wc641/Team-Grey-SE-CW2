@@ -18,6 +18,9 @@ MonoBehaviour:
   icon: {fileID: 0}
   spawnTime: 0
   baseStats:
-    health: 500
+    health: 50
     armour: 5
     attack: 0
+    attackRange: 0
+    aggroRange: 0
+    attackSpeedCooldown: 0
