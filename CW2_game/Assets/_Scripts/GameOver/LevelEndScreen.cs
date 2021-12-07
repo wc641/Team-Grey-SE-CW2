@@ -12,11 +12,7 @@ namespace VS.CW2RTS.UI
 
         public void SetScreenToShow(bool hasWon)
         {
-            if(hasWon)
-                screenToShow = 0;
-            else
-                screenToShow = 1;
-
+            screenToShow = hasWon ? 0 : 1;
             Setup(hasWon);
         }
 
