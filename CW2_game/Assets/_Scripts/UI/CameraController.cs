@@ -13,10 +13,10 @@ namespace VS.CW2RTS.UI
 
         public Vector3 newPosition;
         public Vector3 newZoom;
-        public float minZoomY = 16f;
-        public float maxZoomY = 156f;
-        public float minZoomZ = -126f;
-        public float maxZoomZ = 14f;
+        private float minZoomY = 10f;
+        private float maxZoomY = 38f;
+        private float minZoomZ = -8f;
+        private float maxZoomZ = 20f;
 
         public Vector3 dragStartPosition;
         public Vector3 dragCurrentPosition;
