@@ -1024,7 +1024,6 @@ GameObject:
   - component: {fileID: 147248655}
   - component: {fileID: 147248658}
   - component: {fileID: 147248657}
-  - component: {fileID: 147248656}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1051,21 +1050,6 @@ RectTransform:
   m_AnchoredPosition: {x: 790, y: 477}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &147248656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147248654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53882e655d2b7684192bccc54a766188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BlinkFadeInTime: 0.5
-  BlinkStayTime: 0.8
-  BlinkFadeOutTime: 0.7
 --- !u!114 &147248657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,7 +1077,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2851,7 +2835,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!4 &1232950848 stripped
 Transform:

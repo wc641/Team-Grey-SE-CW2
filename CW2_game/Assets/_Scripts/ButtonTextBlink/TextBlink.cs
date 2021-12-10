@@ -26,7 +26,7 @@ public class TextBlink : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         _timechecker += Time.deltaTime;
         if (_hover == true)
         {
-            _blinkText.color = new Color(0.116f,0.232f,253f);
+            _blinkText.color = new Color(255f,229f,0f);
            
         }
         else if (_timechecker < BlinkFadeInTime)
