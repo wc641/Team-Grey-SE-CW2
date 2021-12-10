@@ -1,37 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TextBlink : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class LevelTextBlink : MonoBehaviour
 {
     private Text _blinkText;
     private Color _color;
     private float _timechecker = 0;
-    public float BlinkFadeInTime=0.5f;
+    public float BlinkFadeInTime = 0.5f;
     public float BlinkStayTime = 0.8f;
     public float BlinkFadeOutTime = 0.7f;
 
-    private float _blinkFadeInTime;
-    private float _blinkFadeOutTime;
-    private bool _hover = false;
     void Start()
     {
-        _blinkText = GetComponentInChildren<Text>();
+        _blinkText = GetComponent<Text>();
         _color = _blinkText.color;
     }
-
 
     void Update()
     {
         _timechecker += Time.deltaTime;
-        if (_hover == true)
-        {
-            _blinkText.color = new Color(0.116f,0.232f,253f);
-           
-        }
-        else if (_timechecker < BlinkFadeInTime)
+        if (_timechecker < BlinkFadeInTime)
         {
             _blinkText.color = new Color(_color.r, _color.g, _color.b, _timechecker / BlinkFadeInTime);
         }
@@ -46,16 +36,7 @@ public class TextBlink : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         else
         {
             _timechecker = 0;
+          
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        _hover = true;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        _hover = false;
     }
 }
