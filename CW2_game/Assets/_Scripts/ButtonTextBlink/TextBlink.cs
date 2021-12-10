@@ -9,12 +9,10 @@ public class TextBlink : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private Text _blinkText;
     private Color _color;
     private float _timechecker = 0;
-    public float BlinkFadeInTime=0.5f;
+    public float BlinkFadeInTime=0.1f;
     public float BlinkStayTime = 0.8f;
-    public float BlinkFadeOutTime = 0.7f;
+    public float BlinkFadeOutTime = 0.2f;
 
-    private float _blinkFadeInTime;
-    private float _blinkFadeOutTime;
     private bool _hover = false;
     void Start()
     {
