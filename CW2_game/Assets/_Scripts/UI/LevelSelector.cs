@@ -11,11 +11,11 @@ namespace VS.CW2RTS.UI
 
         public void Start()
         {   
-            int levelReached = PlayerPrefs.GetInt("levelReached", 2);
+            int levelReached = PlayerPrefs.GetInt("levelReached", 3);
 
             for (int i = 0; i < levelSelectButtons.Length; i++)
             {
-                if (i + 2 > levelReached)
+                if (i + 3 > levelReached)
                     levelSelectButtons[i].interactable = false;
             }
         }
