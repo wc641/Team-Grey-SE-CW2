@@ -23,7 +23,7 @@ namespace VS.CW2RTS.UI
 
             if (hasWon)
             {
-                if (currentScene != 7)
+                if (currentScene != 8)
                 {
                     nextScene = currentScene + 1;
                     if (nextScene > PlayerPrefs.GetInt("levelReached"))
