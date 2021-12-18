@@ -11,7 +11,7 @@ namespace VS.CW2RTS.UI
             SceneManager.LoadScene(sceneName);
         }
 
-        public void quitGame()
+        public void QuitGame()
         {
             Application.Quit();
         }
