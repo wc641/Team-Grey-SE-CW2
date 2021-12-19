@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1562,7 +1562,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Move Camera: \nWASD or LShift + LMB Drag\n\nZoom: \nR and F or Scroll
-    Wheel\n\nSelect unit: \nLMB\n\nSelect multiple units: \nShft + LMB\n\nMove unit:
+    Wheel\n\nSelect unit: \nLMB\n\nSelect multiple units: \nShift + LMB\n\nMove unit:
     \nRMB"
 --- !u!222 &505071485
 CanvasRenderer:
