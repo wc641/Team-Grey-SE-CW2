@@ -32,8 +32,11 @@ namespace VS.CW2RTS.UI
         // Update is called once per frame
         void Update()
         {
-            HandleMouseInput();
-            HandleMovementInput();
+            if(!PauseMenu.isPaused)
+            {
+                HandleMouseInput();
+                HandleMovementInput();
+            }
         }
 
         void ClampZoom()
